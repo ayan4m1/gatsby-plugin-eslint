@@ -35,7 +35,7 @@
     "prettier": "^1.14.2"
   },
   "peerDependencies": {
-    "eslint": "^7.18.0 || ^8",
+    "eslint": "^7.18.0 || ^8 || ^9",
     "eslint-webpack-plugin": "^2.4.3 || ^3 || ^4",
     "gatsby": "^2 || ^3 || ^4 || ^5"
   },
