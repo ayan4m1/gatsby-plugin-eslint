@@ -1,7 +1,7 @@
 {
   "name": "@ayan4m1/gatsby-plugin-eslint",
   "description": "Gatsby plugin to add support for ESLint",
-  "version": "4.0.4",
+  "version": "5.0.0",
   "license": "MIT",
   "author": "Mong-Kuen Sun <mongkuen.sun@gmail.com>",
   "contributors": [
