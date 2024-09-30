@@ -1,7 +1,5 @@
 # gatsby-plugin-eslint
 
-**Now working with Gatsby V3**
-
 Replaces Gatsby's ESLint Webpack configs, giving you full control to customize linting with the rules and developer experience you specifically need to maintain code quality.
 
 This will COMPLETELY OVERWRITE any ESLint Webpack Plugins that Gatsby uses.
@@ -12,11 +10,11 @@ The installation instructions will help you reactivate the [two required rules a
 
 ## Installation
 
-`npm install --save-dev gatsby-plugin-eslint eslint eslint-webpack-plugin`
+`npm install --save-dev gatsby-plugin-eslint eslint-webpack-plugin`
 
 or
 
-`yarn add --dev gatsby-plugin-eslint eslint eslint-webpack-plugin`
+`yarn add --dev gatsby-plugin-eslint eslint-webpack-plugin`
 
 ## Default Settings
 
@@ -27,61 +25,60 @@ or
 
 ## Usage
 
-1. Create `.eslintrc` file in project root.
+1. Create `eslint.config.mjs` file in project root.
 
-   ```javascript
-   // .eslintrc
-
-   // Gatsby's required rules
-   {
-     "rules": {
-       "no-anonymous-exports-page-templates": "warn",
-       "limited-exports-page-templates": "warn"
+   ```js
+   export default [
+     {
+       files: ['src/**/*.js'],
+       rules: {
+         'no-anonymous-exports-page-templates': 'warn',
+         'limited-exports-page-templates': 'warn'
+       }
      }
-   }
+   ];
    ```
 
 2. Add plugin into `gatsby-config.js`
 
-   ```javascript
+   ```js
    // gatsby-config.js
 
-   const path = require("path");
-   // Get paths of Gatsby's required rules, which as of writing is located at:
-   // https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
-   // gatsby/src/utils/eslint-rules
+   const path = require('path');
+   // Get paths of Gatsby's required rules, which as of writing is located at
+   // https://github.com/gatsbyjs/gatsby/tree/gatsby%405.3.3/packages/gatsby/src/utils/eslint-rules
    const gatsbyRequiredRules = path.join(
      process.cwd(),
-     "node_modules",
-     "gatsby",
-     "dist",
-     "utils",
-     "eslint-rules"
+     'node_modules',
+     'gatsby',
+     'dist',
+     'utils',
+     'eslint-rules'
    );
 
    module.exports = {
      plugins: [
        // ...other plugins
        {
-         resolve: "gatsby-plugin-eslint",
+         resolve: 'gatsby-plugin-eslint',
          options: {
-           // Gatsby required rules directory
-           rulePaths: [gatsbyRequiredRules],
+           configType: 'flat',
+           eslintPath: 'eslint/use-at-your-own-risk',
+           // Optional path for Gatsby required rules
+           rulePaths: [gatsbyRequiredRules]
            // Default settings that may be omitted or customized
-           stages: ["develop"],
-           extensions: ["js", "jsx", "ts", "tsx"],
-           exclude: ["node_modules", "bower_components", ".cache", "public"],
-           // Any additional eslint-webpack-plugin options below
-           // ...
-         },
-       },
-     ],
+           // stages: ['develop'],
+           // extensions: ['js', 'jsx', 'ts', 'tsx'],
+           // exclude: ['node_modules', 'bower_components', '.cache', 'public']
+         }
+       }
+     ]
    };
    ```
 
 3. Additionally as of writing, [Gatsby's default ESLint config](https://github.com/gatsbyjs/gatsby/blob/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/gatsby/src/utils/eslint-config.ts) may be copied over if you would still like to take advavntage of those rules.
 
-## Configuring ESLint
+## Configuring ESLint (To Be Updated For Flat Config)
 
 Mix and match your own ESLint plugins and rules depending on the React/Javascript/Typescript patterns you want to enforce. Here are three ways you can get started:
 
@@ -97,7 +94,7 @@ Mix and match your own ESLint plugins and rules depending on the React/Javascrip
 
 2. Add `.eslintrc` file to project root:
 
-   ```javascript
+   ```js
    {
      "parser": "babel-eslint", // uses babel-eslint transforms
      "settings": {
@@ -119,24 +116,6 @@ Mix and match your own ESLint plugins and rules depending on the React/Javascrip
    }
    ```
 
-### Advanced React Linting with AirBnB's [`eslint-config-airbnb`](https://www.npmjs.com/package/eslint-config-airbnb)
-
-1. Follow [`eslint-config-airbnb`](https://www.npmjs.com/package/eslint-config-airbnb) plugin installation procedures. If **npm 5+** this command works for `npm` and `yarn`
-
-   `npx install-peerdeps --dev eslint-config-airbnb`
-
-2. Add `.eslintrc` file to project root:
-
-   ```javascript
-   {
-     "extends": "airbnb",
-     "rules": {
-       "no-anonymous-exports-page-templates": "warn",
-       "limited-exports-page-templates": "warn"
-     }
-   }
-   ```
-
 ### Typescript Linting with [ESLint Plugin Typescript](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin)
 
 1. Follow [`@typescript-eslint/eslint-plugin`](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin) plugin installation procedures:
@@ -149,7 +128,7 @@ Mix and match your own ESLint plugins and rules depending on the React/Javascrip
 
 2. Add `.eslintrc` file to project root:
 
-   ```javascript
+   ```js
    {
      "extends": [
        "eslint:recommended",

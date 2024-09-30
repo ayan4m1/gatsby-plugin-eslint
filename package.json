@@ -1,16 +1,19 @@
 {
-  "name": "gatsby-plugin-eslint",
+  "name": "@ayan4m1/gatsby-plugin-eslint",
   "description": "Gatsby plugin to add support for ESLint",
   "version": "4.0.4",
   "license": "MIT",
   "author": "Mong-Kuen Sun <mongkuen.sun@gmail.com>",
-  "homepage": "https://github.com/mongkuen/gatsby-plugin-eslint",
+  "contributors": [
+    "ayan4m1 <andrew@bulletlogic.com>"
+  ],
+  "homepage": "https://github.com/ayan4m1/gatsby-plugin-eslint",
   "bugs": {
-    "url": "https://github.com/mongkuen/gatsby-plugin-eslint/issues"
+    "url": "https://github.com/ayan4m1/gatsby-plugin-eslint/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mongkuen/gatsby-plugin-eslint"
+    "url": "git+https://github.com/ayan4m1/gatsby-plugin-eslint.git"
   },
   "keywords": [
     "gatsby",
@@ -22,20 +25,16 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"yarn run prettier-watch\" \"yarn run build-watch\" --kill-others",
-    "prettier-watch": "onchange 'src/**/*.js' 'src/**/*.jsx' -- prettier --write {{changed}}",
-    "build-watch": "onchange 'src/**/*.js' 'src/**/*.jsx' -- yarn run build",
+    "dev": "onchange \"src/**/*.js\" -- yarn run build",
     "build": "babel src --out-dir .",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/runtime": "^7.15.3",
-    "concurrently": "^3.6.1",
-    "onchange": "^4.1.0",
-    "prettier": "^1.14.2"
+    "@babel/cli": "^7.25.6",
+    "@babel/core": "^7.25.2",
+    "babel-preset-gatsby-package": "^3.13.1",
+    "onchange": "^7.1.0",
+    "prettier": "^3.3.3"
   },
   "peerDependencies": {
     "eslint": "^7.18.0 || ^8 || ^9",
@@ -43,6 +42,6 @@
     "gatsby": "^2 || ^3 || ^4 || ^5"
   },
   "dependencies": {
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "^6.0.1"
   }
 }
