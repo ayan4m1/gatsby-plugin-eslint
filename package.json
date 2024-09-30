@@ -27,12 +27,15 @@
   "scripts": {
     "dev": "onchange \"src/**/*.js\" -- yarn run build",
     "build": "babel src --out-dir .",
+    "prepare": "husky",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.6",
     "@babel/core": "^7.25.2",
     "babel-preset-gatsby-package": "^3.13.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "onchange": "^7.1.0",
     "prettier": "^3.3.3"
   },
