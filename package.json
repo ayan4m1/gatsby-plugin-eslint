@@ -17,6 +17,9 @@
     "gatsby-plugin",
     "eslint"
   ],
+  "files": [
+    "./gatsby-node.js"
+  ],
   "main": "index.js",
   "scripts": {
     "dev": "concurrently \"yarn run prettier-watch\" \"yarn run build-watch\" --kill-others",
